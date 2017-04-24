@@ -49,18 +49,16 @@ class LinkedList implements ILinkedList {
     const nodeToBeRemoved = this.getNodeAt(index);
     if (!nodeToBeRemoved) return;
 
-    if (index === 0) {
-      this._headNode = nodeToBeRemoved.next;
-    } else {
-      const previousNode = this.getNodeAt(index - 1);
-      const nextNode = this.getNodeAt(index + 1);
-      if (previousNode) {
-        if (nextNode) {
-          previousNode.next = nextNode;
-        } else {
-          previousNode.next = null;
-        }
+    const previousNode = this.getNodeAt(index - 1);
+    const nextNode = this.getNodeAt(index + 1);
+    if (previousNode) {
+      if (nextNode) {
+        previousNode.next = nextNode;
+      } else {
+        previousNode.next = null;
       }
+    } else {
+      this._headNode = nodeToBeRemoved.next;
     }
     this._length--;
   }
